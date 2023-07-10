@@ -11,12 +11,14 @@ def create_app():
     app.config.from_object(Settings)
     Bootstrap(app)
     db.init_app(app)
-    migrar = Migrate(app, db, directory='biblioflask/migrations')
+    Migrate(app, db, directory='biblioflask/migrations')
     
+    # Para evitar la importacion circular
     from .apps.books.routes import books_bp
     from .apps.publishers.routes import publishers_bp
     from .apps.authors.routes import authors_bp
 
+    # Blueprints
     app.register_blueprint(books_bp)
     app.register_blueprint(publishers_bp)
     app.register_blueprint(authors_bp)

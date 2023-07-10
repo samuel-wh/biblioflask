@@ -21,6 +21,7 @@
                         <th>Estado</th>
                         <th>País</th>
                         <th>Sitio web</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,14 @@
                             <td>{{ publisher.state }}</td>
                             <td>{{ publisher.country }}</td>
                             <td>{{ publisher.website }}</td>
+                            <td>
+                                <a href="{{ url_for('publishers.delete_publisher', publisher_id=publisher.id) }}" class="btn btn-danger btn-sm">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                                <a href="{{ url_for('publishers.edit_publisher', publisher_id=publisher.id) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa-regular fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

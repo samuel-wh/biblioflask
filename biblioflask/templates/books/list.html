@@ -19,6 +19,7 @@
                         <th>Autores</th>
                         <th>Editorial</th>
                         <th>Fecha de publicación</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,8 +32,16 @@
                                     {{ author.name }} {{ author.lastname }}{% if not loop.last %}, {% endif %}
                                 {% endfor %}
                             </td>
-                            <td>{{ book.publisher_id.name }}</td>
+                            <td>{{ book.publisher.name }}</td>
                             <td>{{ book.pub_date }}</td>
+                            <td>
+                                <a href="{{ url_for('books.delete_book', book_id=book.id) }}" class="btn btn-danger btn-sm">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                                <a href="{{ url_for('books.edit_book', book_id=book.id) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa-regular fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
